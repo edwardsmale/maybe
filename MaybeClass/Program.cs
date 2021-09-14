@@ -24,9 +24,9 @@ namespace MaybeClass
             }
 
             {
-                var maybe = new Maybe<string>("A piece of text");
-
                 // A Maybe<T> can be passed to a method that expects a T:
+
+                var maybe = new Maybe<string>("A piece of text");
 
                 var result = MethodThatTakesAString(maybe);
 
@@ -34,9 +34,9 @@ namespace MaybeClass
             }
 
             {
-                var maybe = new Maybe<string>(new Exception("It all went wrong!!! :("));
-
                 // A non-valued maybe throws an exception when implicitly converted to T:
+
+                var maybe = new Maybe<string>(new Exception("It all went wrong!!! :("));
 
                 try
                 {
@@ -44,7 +44,7 @@ namespace MaybeClass
                 }
                 catch (Exception ex)
                 {
-                    Assert(ex.GetType() == typeof(InvalidCastException));
+                    Assert(ex.GetType() == typeof(InvalidOperationException));
                 }
             }
 
@@ -98,7 +98,7 @@ namespace MaybeClass
             }
             else
             {
-                return Maybe.Null;
+                return Maybe<string>.Null;
             }
         }
     }
