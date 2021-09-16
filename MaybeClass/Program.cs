@@ -65,11 +65,11 @@ namespace MaybeClass
             }
 
             {
-                // A method with return type Maybe<T> can return maybe that contains null.
+                // A method with return type Maybe<T> can return maybe that is empty.
 
                 var maybe = MethodThatReturnsAMaybe(23);
 
-                Assert(maybe.IsNull);
+                Assert(maybe.IsEmpty);
             }
 
             void Assert(bool condition)
@@ -98,7 +98,7 @@ namespace MaybeClass
             }
             else
             {
-                return Maybe<string>.Null;
+                return Maybe<string>.Empty;
             }
         }
     }

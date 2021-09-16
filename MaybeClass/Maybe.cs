@@ -3,14 +3,15 @@
 namespace MaybeClass
 {
     /// <summary>
-    /// A class containing a value of type <typeparamref name="T"/>, an exception, or null.
+    /// A class that can contain a value of type <typeparamref name="T"/>, or contain an exception,
+    /// or be empty.
     /// </summary>
     public class Maybe<T>
     {
         public readonly T Value;
         public readonly bool HasValue;
         public readonly Exception Exception;
-        public readonly bool IsNull;
+        public readonly bool IsEmpty;
 
         /// <summary>
         /// Initialises a maybe object with a value of type <typeparamref name="T"/>.
@@ -22,7 +23,7 @@ namespace MaybeClass
         }
 
         /// <summary>
-        /// Initialises a maybe object containing an exception or null.
+        /// Initialises a maybe object that contains an exception or is empty.
         /// </summary>
         public Maybe(Exception ex = null)
         {
@@ -32,7 +33,7 @@ namespace MaybeClass
             }
             else
             {
-                this.IsNull = true;
+                this.IsEmpty = true;
             }
         }
 
@@ -67,8 +68,8 @@ namespace MaybeClass
         // Allows a method with return type Maybe<T> to return an Exception:
         public static implicit operator Maybe<T>(Exception ex) => new Maybe<T>(ex);
 
-        // Allows a method with return type Maybe<T> to return Maybe<T>.Null:
-        public static readonly Exception Null = null;
+        // Allows a method with return type Maybe<T> to return Maybe<T>.Empty:
+        public static readonly Exception Empty = null;
 
         // Allows comparison between a Maybe<T> and a T.
         public static bool operator ==(Maybe<T> x, T y) => x.HasValue && x.Value.Equals(y);
@@ -96,7 +97,7 @@ namespace MaybeClass
 
         private object GetValueOrNonValue()
         {
-            return this.HasValue ? this.Value : (object)this.Exception ?? "null";
+            return this.HasValue ? this.Value : (object)this.Exception ?? "empty";
         }
     }
 }
