@@ -75,7 +75,7 @@ MethodThatTakesAString(maybe);
 unless it is empty or contains an exception:
     
 ```
-var maybe = new Maybe<string>.Empty;
+var maybe = Maybe<string>.Empty;
 
 MethodThatTakesAString(maybe); // throws an InvalidOperationException
 ```
