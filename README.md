@@ -6,8 +6,6 @@ The idea of this class is to help with:
 - Methods that can either return a value or null
 
 
-## Using a Maybe&lt;T&gt; as a T
-
 #### A Maybe&lt;T&gt; can be assigned a T value:
 
 ```
@@ -25,8 +23,6 @@ var maybe = new Maybe<int>(3);
 Assert(maybe == 3);
 ```
 
-
-## Returning Maybe&lt;T&gt; from a method
 
 #### A method with return type Maybe&lt;T&gt; can return a T, or an exception, or empty:
 
@@ -67,8 +63,6 @@ Assert(maybe.IsEmpty);
 ```
 
 
-## Maybe&lt;T&gt; as a method parameter
-
 #### Maybe&lt;T&gt; can be passed to a method that expects a T:
 
 ```
@@ -78,10 +72,16 @@ MethodThatTakesAString(maybe);
 ```
 
 
-#### Unless it is empty or contains an exception:
+unless it is empty or contains an exception:
+    
+```
+var maybe = new Maybe<string>.Empty;
+
+MethodThatTakesAString(maybe); // throws an InvalidOperationException
+```
 
 ```
 var maybe = new Maybe<string>(new Exception());
 
-MethodThatTakesAString(maybe); // InvalidOperationException
+MethodThatTakesAString(maybe); // throws an InvalidOperationException
 ```
