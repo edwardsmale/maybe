@@ -63,7 +63,7 @@ Assert(maybe.IsEmpty);
 ```
 
 
-#### Maybe&lt;T&gt; can be passed to a method that expects a T:
+#### A Maybe&lt;T&gt; can be passed to a method that expects a T:
 
 ```
 var maybe = new Maybe<string>("A piece of text");
